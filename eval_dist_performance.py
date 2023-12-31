@@ -6,9 +6,9 @@ import matplotlib
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
 
-hatch_list = ["//", "\\\\", "xx", "++", "||", "--"]
+hatch_list = ["//", "xx", "\\\\", "++", "||", "--"]
 # hatch_list = [None, None, None, None, None, None]
-color_list = ["#e9a196", "#86beda", "#c3d5b2", "#ddc19e", "#937fb6", "#4f807d"]
+color_list = ["#e9a196", "#c3d5b2", "#86beda", "#ddc19e", "#937fb6", "#4f807d"]
 
 
 def isfloat(val):
@@ -82,7 +82,7 @@ def plot(names, object_labels, group_labels, data, lengend, output_path,
 
         xlim = (1 + len(group_labels)) * tick_space_len
         xlabels = [""] + group_labels
-        bar_width = 0.25
+        bar_width = 0.35
         xticks = np.arange(0, xlim, tick_space_len)
         ax.set_xlim(0, xlim)
         ax.set_xticks(xticks, xlabels)
@@ -146,25 +146,25 @@ def plot(names, object_labels, group_labels, data, lengend, output_path,
             #              fontsize=font_size - 2,
             #              zorder=10)
 
-        plot_x = np.arange(1 * tick_space_len,
-                           (1 + len(group_labels)) * tick_space_len,
-                           tick_space_len,
-                           dtype=float)
-        cluster_len = bar_width * len(object_labels)
+        # plot_x = np.arange(1 * tick_space_len,
+        #                    (1 + len(group_labels)) * tick_space_len,
+        #                    tick_space_len,
+        #                    dtype=float)
+        # cluster_len = bar_width * len(object_labels)
 
-        for i in range(len(plot_y)):
-            if i > 0:
-                plot_y[i] = plot_y[i - 1] * 2
-        container = ax.bar(
-            plot_x,
-            plot_y,
-            width=cluster_len,
-            edgecolor="k",
-            hatch=None,
-            color="w",
-            label=None,
-            zorder=9,
-        )
+        # for i in range(len(plot_y)):
+        #     if i > 0:
+        #         plot_y[i] = plot_y[i - 1] * 2
+        # container = ax.bar(
+        #     plot_x,
+        #     plot_y,
+        #     width=cluster_len,
+        #     edgecolor="k",
+        #     hatch=None,
+        #     color="w",
+        #     label=None,
+        #     zorder=9,
+        # )
         # ax.bar_label(container, plot_label, fontsize=font_size - 2, zorder=10)
 
         ax.legend(
@@ -183,7 +183,7 @@ def plot(names, object_labels, group_labels, data, lengend, output_path,
 def draw_figure(input_path, output_path, min_ylim, max_ylim, ystep):
     names, header, labels, all_data = read_data(input_path)
 
-    output_path = "figures/" + "eval_single_performance_sage.pdf"
+    output_path = "figures/" + "eval_dist_performance_sage.pdf"
     plot(names, labels, header, all_data, None, output_path, min_ylim,
          max_ylim, ystep, "GraphSAGE")
 
@@ -191,15 +191,15 @@ def draw_figure(input_path, output_path, min_ylim, max_ylim, ystep):
 def draw_figure2(input_path, output_path, min_ylim, max_ylim, ystep):
     names, header, labels, all_data = read_data(input_path)
 
-    output_path = "figures/" + "eval_single_performance_gat.pdf"
+    output_path = "figures/" + "eval_dist_performance_gat.pdf"
     plot(names, labels, header, all_data, None, output_path, min_ylim,
          max_ylim, ystep, "GAT")
 
 
 if __name__ == "__main__":
-    draw_figure("data/eval_single_performance_sage.csv", "figures",
-                [0, 0, 0, 0], [200000, 200000, 250000, 400000],
-                [100000, 100000, 125000, 200000])
-    draw_figure2("data/eval_single_performance_gat.csv", "figures",
-                 [0, 0, 0, 0], [150000, 150000, 200000, 300000],
-                 [75000, 75000, 100000, 150000])
+    draw_figure("data/eval_dist_performance_sage.csv", "figures", [0, 0, 0, 0],
+                [250000, 350000, 450000, 850000],
+                [125000, 175000, 225000, 425000])
+    draw_figure2("data/eval_dist_performance_gat.csv", "figures", [0, 0, 0, 0],
+                 [250000, 350000, 450000, 800000],
+                 [125000, 175000, 225000, 400000])
