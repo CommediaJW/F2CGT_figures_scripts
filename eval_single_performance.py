@@ -146,25 +146,25 @@ def plot(names, object_labels, group_labels, data, lengend, output_path,
             #              fontsize=font_size - 2,
             #              zorder=10)
 
-        plot_x = np.arange(1 * tick_space_len,
-                           (1 + len(group_labels)) * tick_space_len,
-                           tick_space_len,
-                           dtype=float)
-        cluster_len = bar_width * len(object_labels)
+        # plot_x = np.arange(1 * tick_space_len,
+        #                    (1 + len(group_labels)) * tick_space_len,
+        #                    tick_space_len,
+        #                    dtype=float)
+        # cluster_len = bar_width * len(object_labels)
 
-        for i in range(len(plot_y)):
-            if i > 0:
-                plot_y[i] = plot_y[i - 1] * 2
-        container = ax.bar(
-            plot_x,
-            plot_y,
-            width=cluster_len,
-            edgecolor="k",
-            hatch=None,
-            color="w",
-            label=None,
-            zorder=9,
-        )
+        # for i in range(len(plot_y)):
+        #     if i > 0:
+        #         plot_y[i] = plot_y[i - 1] * 2
+        # container = ax.bar(
+        #     plot_x,
+        #     plot_y,
+        #     width=cluster_len,
+        #     edgecolor="k",
+        #     hatch=None,
+        #     color="w",
+        #     label=None,
+        #     zorder=9,
+        # )
         # ax.bar_label(container, plot_label, fontsize=font_size - 2, zorder=10)
 
         ax.legend(
@@ -198,8 +198,8 @@ def draw_figure2(input_path, output_path, min_ylim, max_ylim, ystep):
 
 if __name__ == "__main__":
     draw_figure("data/eval_single_performance_sage.csv", "figures",
-                [0, 0, 0, 0], [200000, 200000, 250000, 400000],
-                [100000, 100000, 125000, 200000])
+                [0, 0, 0, 0], [100000, 120000, 150000, 300000],
+                [50000, 60000, 75000, 150000])
     draw_figure2("data/eval_single_performance_gat.csv", "figures",
-                 [0, 0, 0, 0], [150000, 150000, 200000, 300000],
-                 [75000, 75000, 100000, 150000])
+                 [0, 0, 0, 0], [100000, 100000, 150000, 250000],
+                 [50000, 50000, 75000, 125000])
