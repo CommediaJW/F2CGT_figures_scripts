@@ -69,7 +69,7 @@ def plot(names, data, output_path, min_ylim, max_ylim, ystep):
     x_labels = [1, 4, 16, 64, 256]
     plt.xlim(0, 4)
     plt.xticks(x_tikcs, x_labels)
-    plt.xlabel("Compress Ratio", fontsize=font_size)
+    plt.xlabel("Compression Ratio", fontsize=font_size)
 
     plt.ylim(min_ylim, max_ylim)
     if (max_ylim - min_ylim) % ystep == 0:

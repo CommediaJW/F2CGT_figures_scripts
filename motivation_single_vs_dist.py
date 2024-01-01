@@ -29,7 +29,7 @@ def read_data(path):
 
 
 def plot(labels, data, output_path, min_ylim, max_ylim, ystep):
-    plt.figure(figsize=(9, 2.5))
+    plt.figure(figsize=(8, 2.5))
     plt.clf()
     # fix parameter
     font_size = 20
@@ -53,12 +53,15 @@ def plot(labels, data, output_path, min_ylim, max_ylim, ystep):
 
     plt.ylim(0, xlim)
     plt.yticks(xticks, xlabels)
-    plt.ylabel("#Machines", fontsize=font_size)
+    # plt.ylabel("#Machines", fontsize=font_size)
 
     plt.xlim(min_ylim, max_ylim)
-    num_yticks = max_ylim // ystep + 1
-    plt.xticks(np.arange(0, num_yticks * ystep, ystep))
-    plt.xlabel("Normalized Throughput", fontsize=font_size)
+    if max_ylim % ystep == 0:
+        yticks = np.arange(min_ylim, max_ylim + ystep, ystep)
+    else:
+        yticks = np.arange(min_ylim, max_ylim, ystep)
+    plt.xticks(yticks)
+    plt.xlabel("Normalized Throughput", fontsize=font_size, x=0.4)
     plot_x = np.arange(tick_space_len, (1 + len(labels)) * tick_space_len,
                        tick_space_len)
     plot_y = []
@@ -95,4 +98,4 @@ def draw_figure(input_path, output_path, min_ylim, max_ylim, ystep):
 
 
 if __name__ == "__main__":
-    draw_figure("data/motivation_single_vs_dist.csv", "figures", 0, 1.2, 0.5)
+    draw_figure("data/motivation_single_vs_dist.csv", "figures", 0.0, 1.8, 0.9)
